@@ -441,8 +441,11 @@ func waitForCheck(status *CheckStatus) *CheckReport {
 	}
 }
 
-func checkRepo(objs map[string]uint32, url *url.URL, token Token, corId string) map[string]uint32 {
-	checkUrl := url.JoinPath("check")
+func checkRepo(objs map[string]uint32, baseURL *url.URL, token Token, corId string) map[string]uint32 {
+	checkPath := path.Join(baseURL.Path, "check")
+	checkUrl := *baseURL
+	checkUrl.Path = checkPath
+	//checkUrl := url.JoinPath("check")
 	jsonObjects, _ := json.Marshal(objs)
 	// Default Transport is used which sets net.Dialer.Timeout to 30s
 	client := &http.Client{Timeout: 300 * time.Second /* 5m timeout for an overall request processing */}
