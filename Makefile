@@ -14,13 +14,13 @@ $(bd):
 	@mkdir -p $@
 
 $(push_exe): $(bd) cmd/fiopush/main.go
-	GOOS=linux GOARCH=arm64 $(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiopush/main.go
+	 $(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiopush/main.go
 
 $(check_exe): $(bd) cmd/fiocheck/main.go
-	GOOS=linux GOARCH=arm64 $(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiocheck/main.go
+	 $(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiocheck/main.go
 
 $(sync_exe): $(bd) cmd/fiosync/main.go
-	GOOS=linux GOARCH=arm64 $(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiosync/main.go
+	$(GO) build $(GOBUILDFLAGS) -o $(bd)/$@ cmd/fiosync/main.go
 
 clean:
 	@rm -r $(bd)
